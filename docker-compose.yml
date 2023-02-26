@@ -9,6 +9,8 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
     restart: unless-stopped 
   
   grafana:
@@ -18,4 +20,6 @@ services:
       - 3000:3000
     depends_on:
       - prometheus
-    
+
+volumes:
+  prometheus_data:
